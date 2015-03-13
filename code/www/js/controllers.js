@@ -30,9 +30,13 @@ Controller for the discover page
           // $timeout to allow animation to complete
           $scope.currentSong = Recommendations.queue[0];
         }, 250);
+    }
 
-
-
+    $scope.nextAlbumImg = function(){
+      if(Recommendations.queue.length > 1){
+        return Recommendations.queue[1].image_large;
+      }
+      return '';
     }
   })
 
