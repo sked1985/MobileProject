@@ -58,6 +58,18 @@ Controller for the discover page
     }
   })
 
+  .controller('SplashCtrl', function($scope, $state, User){
+
+    $scope.submitForm = function(username, signingUp){
+      User.auth(username, signingUp).then(function(){
+
+        $state.go('tab.discover');
+      }, function(){
+
+        alert('Try another username please');
+      });
+    }
+  })
 
 /*
 Controller for the favorites page
@@ -68,6 +80,7 @@ Controller for the favorites page
           $window.open(song.open_url, "system");
         }
         $scope.favorites = User.favorites;
+        $scope.username = User.username;
       })
 
 
@@ -76,7 +89,7 @@ Controller for the favorites page
 /*
 Controller for our tab bar
 */
-    .controller('TabsCtrl', function($scope, User, Recommendations) {
+    .controller('TabsCtrl', function($scope, User, Recommendations, $window) {
 
       $scope.favCount = User.favoriteCount;
 
@@ -86,6 +99,11 @@ Controller for our tab bar
       }
       $scope.leavingFavorites = function(){
         Recommendations.init();
+      }
+
+      $scope.logout = function(){
+        User.destroySession();
+        $window.location.href = 'index.html';
       }
 
       });
