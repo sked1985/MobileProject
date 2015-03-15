@@ -1,6 +1,6 @@
 /* Splash page stylings */
 .splash-page {
-  background:url(/img/splash_bkg1.jpg);
+  background:url(/img/splash-bkg2.png);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -12,7 +12,7 @@
 .splash-page .logo h1 {
   margin-top:30px;
   text-align:center;
-  color:#00ffff !important;
+  color:#FFFF00 !important;
   font-family: Verdana, Geneva, sans-serif;
   font-weight:bold;
   letter-spacing: -3px;
@@ -20,7 +20,7 @@
 }
 
 .splash-page .signup-opt {
-  color:#fff;
+  color:#FFFF00;
   padding:15px;
   margin-top:20px;
   font-weight: bold;
