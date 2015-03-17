@@ -2,11 +2,11 @@ angular.module('songhop.services', ['ionic.utils'])
 
 .factory('User', function($http, $q, $localstorage, SERVER) {
 
-    var o ={
+    var o = {
       username: false,
-      session_id: false,
-      favorites: [],
-      newFavorites: 0
+     session_id: false,
+     favorites: [],
+     newFavorites: 0
     }
 
     o.auth = function(username, signingUp){
@@ -15,12 +15,12 @@ angular.module('songhop.services', ['ionic.utils'])
 
       if (signingUp){
         authRoute = 'signup';
-      }else{
+      } else {
         authRoute = 'login'
       }
       return $http.post(SERVER.url + '/' + authRoute, {username: username})
       .success(function(data){
-       o.setSession(data.username, data.session_id, data.favorites);
+      
      });
     }
 
@@ -48,12 +48,21 @@ angular.module('songhop.services', ['ionic.utils'])
       });
     }
 
-    o.removeSongFromFavorites = function(song, index){
+    o.removeSongFromFavorites = function(song, index) {
+     // make sure there's a song to add
+     if (!song) return false;
 
-      if(!song)return false
+     // add to favorites array
+     o.favorites.splice(index, 1);
 
-      o.favorites.splice(index, 1);
-    }
+     // persist this to the server
+     return $http({
+       method: 'DELETE',
+       url: SERVER.url + '/favorites',
+       params: { session_id: o.session_id, song_id:song.song_id }
+     });
+
+   }
 
     return o;
 

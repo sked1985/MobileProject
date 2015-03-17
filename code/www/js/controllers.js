@@ -64,6 +64,7 @@ Controller for the discover page
       User.auth(username, signingUp).then(function(){
 
         $state.go('tab.discover');
+        
       }, function(){
 
         alert('Try another username please');
