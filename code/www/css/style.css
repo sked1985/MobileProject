@@ -1,6 +1,6 @@
 /* Splash page stylings */
 .splash-page {
-  background:url(/img/splash-bkg2.png);
+  background-color: blue;
   background-size: cover;
   background-repeat: no-repeat;
 }

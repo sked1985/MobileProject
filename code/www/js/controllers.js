@@ -1,10 +1,24 @@
 angular.module('songhop.controllers', ['ionic', 'songhop.services'])
 
 
+
 /*
 Controller for the discover page
 */
-    .controller('DiscoverCtrl', function($scope, $ionicLoading, $timeout, User, Recommendations) {
+  .controller('DiscoverCtrl', function($scope, $ionicLoading, $ionicPopup, $timeout, User, Recommendations) {
+
+      // An alert dialog
+ $scope.showAlert = function() {
+   var alertPopup = $ionicPopup.alert({
+     title: 'Welcome to FindATune!',
+     type: 'button-royal',
+     template: 'Favorite the ones you like, Skip the ones you hate! Enjoy'
+   });
+   alertPopup.then(function(res) {
+     console.log('Thank you for not eating my delicious ice cream cone');
+   });
+ };
+
 
       var showLoading = function() {
           $ionicLoading.show({
@@ -64,7 +78,7 @@ Controller for the discover page
       User.auth(username, signingUp).then(function(){
 
         $state.go('tab.discover');
-        
+
       }, function(){
 
         alert('Try another username please');
